@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bounce Client - Premium Bloxd.io Client</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="site-logo-bg"></span>
+            Bounce Client
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="main-card">
+            <!-- Hero Section -->
+            <section id="home" class="hero">
+                <div class="container" id="heroContainer">
+                    <h1>Bounce Client</h1>
+                    <p class="tagline">The #1 Bloxd.io PvP Client</p>
+                    <p class="subtitle">PvP client to improve your gameplay experience</p>
+                    <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin:24px 0; font-size:1.1rem; color:#9f7aea;">
+                        <i class="fas fa-users"></i>
+                        <span id="userCounter">0</span> users online right now
+                    </div>
+                    <button class="cta-button" id="launchGameBtn" style="margin: 0 auto;">Launch Game</button>
+                    <button id="openUIBtn" style="margin: 16px auto; display: block; background:#7c3aed; color:white; border:none; border-radius:8px; padding:12px 22px; font-size:1.1rem; font-weight:700; cursor:pointer; box-shadow:0 4px 16px rgba(124,58,237,0.18);">☰ Client Menu</button>
+                </div>
+                <div id="uiBackdrop" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; cursor:pointer;"></div>
+                <div id="customUIPanel" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:1000; background:rgba(20,16,24,0.98); border-radius:12px; box-shadow:0 8px 32px rgba(124,58,237,0.18); padding:24px; min-width:260px; color:#fff;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <h3 style="margin:0; font-size:1.2rem;">Bounce Client UI</h3>
+                        <button id="closeCustomUIBtn" style="background:none; border:none; color:#ffd700; font-size:1.3rem; cursor:pointer;">✕</button>
+                    </div>
+                    <div>
+                        <p>Welcome to the Bounce Client UI!</p>
+                        <button onclick="toggleSetting('Graphics')" style="width:100%; margin-bottom:8px; padding:10px; border-radius:6px; background:#7c3aed; color:white; border:none; font-weight:600; cursor:pointer;">Graphics</button>
+                        <button onclick="toggleSetting('Audio')" style="width:100%; margin-bottom:8px; padding:10px; border-radius:6px; background:#7c3aed; color:white; border:none; font-weight:600; cursor:pointer;">Audio</button>
+                        <button onclick="toggleSetting('FPS Boost')" style="width:100%; margin-bottom:8px; padding:10px; border-radius:6px; background:#7c3aed; color:white; border:none; font-weight:600; cursor:pointer;">FPS Boost</button>
+                        <button onclick="toggleCrosshairs()" style="width:100%; margin-bottom:8px; padding:10px; border-radius:6px; background:#9f7aea; color:white; border:none; font-weight:600; cursor:pointer;">Custom Crosshairs</button>
+                    </div>
+                    <div id="crosshairsPanel" style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.1);">
+                        <p style="font-size:0.9rem; margin-bottom:8px;">Select a crosshair:</p>
+                        <button onclick="applyCrosshair('+')" style="width:100%; margin-bottom:6px; padding:8px; border-radius:4px; background:rgba(255,255,255,0.1); color:white; border:1px solid #7c3aed; font-weight:600; cursor:pointer; font-size:1.2rem;">+ Plus</button>
+                        <button onclick="applyCrosshair('x')" style="width:100%; margin-bottom:6px; padding:8px; border-radius:4px; background:rgba(255,255,255,0.1); color:white; border:1px solid #7c3aed; font-weight:600; cursor:pointer; font-size:1.2rem;">× Cross</button>
+                        <button onclick="applyCrosshair('●')" style="width:100%; margin-bottom:6px; padding:8px; border-radius:4px; background:rgba(255,255,255,0.1); color:white; border:1px solid #7c3aed; font-weight:600; cursor:pointer; font-size:1.2rem;">● Circle</button>
+                        <button onclick="applyCrosshair('⊙')" style="width:100%; margin-bottom:6px; padding:8px; border-radius:4px; background:rgba(255,255,255,0.1); color:white; border:1px solid #7c3aed; font-weight:600; cursor:pointer; font-size:1.2rem;">⊙ Dot</button>
+                        <button onclick="applyCrosshair('none')" style="width:100%; padding:8px; border-radius:4px; background:rgba(255,255,255,0.1); color:white; border:1px solid #7c3aed; font-weight:600; cursor:pointer;">Remove</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features">
+                <div class="container">
+                    <h2>Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                            <h3>High Performance</h3>
+                            <p>Optimized for smooth gameplay and minimal lag</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-shield"></i></div>
+                            <h3>Advanced PvP Tools</h3>
+                            <p>Built-in utilities to enhance your combat skills</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+                            <h3>Custom Mods</h3>
+                            <p>Personalize your experience with various mods</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-building"></i></div>
+                            <h3>Schematics</h3>
+                            <p>Advanced system design and optimization tools</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
+                            <h3>Regular Updates</h3>
+                            <p>Stay updated with new features and improvements</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-users"></i></div>
+                            <h3>Community Support</h3>
+                            <p>Active community to help and share tips</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <section id="download" class="download">
+                <div class="container">
+                    <a href="https://www.youtube.com/@CyphrNX" target="_blank" class="youtube-link">
+                        <i class="fab fa-youtube"></i>
+                        <span>CyphrNX</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>&copy; 2025 Bounce Client. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Discord</a>
+                <a href="#">Twitter</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Move script to end of body for reliable DOM access -->
+    <script>
+    // UI logic
+    const launchGameBtn = document.getElementById('launchGameBtn');
+    const openUIBtn = document.getElementById('openUIBtn');
+    const customUIPanel = document.getElementById('customUIPanel');
+    const closeCustomUIBtn = document.getElementById('closeCustomUIBtn');
+    const uiBackdrop = document.getElementById('uiBackdrop');
+    const heroContainer = document.getElementById('heroContainer');
+    const userCounter = document.getElementById('userCounter');
+
+    // Initialize user counter
+    function initUserCounter() {
+        let userCount = parseInt(localStorage.getItem('bounceUserCount')) || Math.floor(Math.random() * 50) + 10;
+        userCounter.textContent = userCount;
+        
+        // Simulate real-time updates
+        setInterval(() => {
+            const changeAmount = Math.floor(Math.random() * 5) - 2; // Random change between -2 and +2
+            userCount = Math.max(userCount + changeAmount, 5); // Minimum 5 users
+            userCounter.textContent = userCount;
+            localStorage.setItem('bounceUserCount', userCount);
+        }, 3000); // Update every 3 seconds
+    }
+    initUserCounter();
+
+    launchGameBtn.onclick = function() {
+        console.log('Launch Game button clicked');
+        window.open('https://bloxd.io/', '_blank');
+        launchGameBtn.disabled = true;
+        launchGameBtn.innerText = 'Game Launched';
+        setTimeout(() => {
+            launchGameBtn.disabled = false;
+            launchGameBtn.innerText = 'Launch Game';
+        }, 3000);
+    };
+
+    openUIBtn.onclick = function() {
+        customUIPanel.style.display = 'block';
+        uiBackdrop.style.display = 'block';
+    };
+
+    closeCustomUIBtn.onclick = function() {
+        customUIPanel.style.display = 'none';
+        uiBackdrop.style.display = 'none';
+    };
+
+    uiBackdrop.onclick = function() {
+        customUIPanel.style.display = 'none';
+        uiBackdrop.style.display = 'none';
+    };
+
+    function toggleSetting(setting) {
+        let message = '';
+        switch(setting) {
+            case 'Graphics':
+                message = 'Graphics settings updated!';
+                break;
+            case 'Audio':
+                message = 'Audio settings updated!';
+                break;
+            case 'FPS Boost':
+                message = 'FPS Boost enabled!';
+                break;
+        }
+        alert(message);
+    }
+
+    // Custom Crosshairs Functionality
+    function toggleCrosshairs() {
+        const crosshairsPanel = document.getElementById('crosshairsPanel');
+        const currentDisplay = window.getComputedStyle(crosshairsPanel).display;
+        crosshairsPanel.style.display = currentDisplay === 'none' ? 'block' : 'none';
+    }
+
+    function applyCrosshair(type) {
+        // Persist selection to localStorage
+        localStorage.setItem('selectedCrosshair', type);
+        alert('Crosshair set to ' + type + '. This setting is saved for future use.');
+        // Close the crosshairs panel after selection
+        document.getElementById('crosshairsPanel').style.display = 'none';
+    }
+
+    function toggleButton(button) {
+        button.classList.toggle('active');
+    }
+    </script>
+</body>
+</html>
